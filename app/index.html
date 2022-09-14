@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+        integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://threejs.org/examples/js/loaders/OBJLoader.js"></script>
+    <script
+        src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/controls/OrbitControls.js"></script>
+    <script src="index.js"></script>
+    <title>PiFu Viewer</title>
+</head>
+
+<body>
+    <div style="margin: 5px; padding: 5px">
+        <input class="form-control form-control-lg" id="selectAvatar" type="file" />
+    </div>
+
+    <div id="container"></div>
+
+    <script>
+        const server_uri = "http://34.170.112.43:5000/pose"
+        pifu = new PifuRenderer(server_uri, document.getElementById('container'))
+        pifu.animate()
+        document.getElementById("selectAvatar").addEventListener("change", (event) => {
+            pifu.render(event.target.files[0])
+        });
+    </script>
+</body>
+
+</html>
